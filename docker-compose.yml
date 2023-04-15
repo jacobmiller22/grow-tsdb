@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  db:
+    image: amd64/influxdb:2.7-alpine
+    container_name: influxdb
+    restart: unless-stopped
+    ports:
+      - 8086:8086
+    volumes:
+      - /var/lib/influxdb:/var/lib/influxdb
+    networks:
+      - db-network
+    command: --reporting-disabled
+networks:
+  db-network:
+    name: db-network
